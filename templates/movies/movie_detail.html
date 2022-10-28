@@ -1,0 +1,276 @@
+{% extends 'movies/base.html'%}
+{% load static %}
+{% block title%} {{movie.title}}—Culture Cloud {% endblock title%}
+{% block header %} movie-banner {% endblock header %}
+{% block fix_head %} film-banner {% endblock fix_head %}
+{% block container %}
+    <div class="container py-md-3"></div>
+{% endblock container%}
+{% block sidebar%}
+    <div class="side-bar col-lg-3">
+{% endblock sidebar%}
+
+{% block movie %}
+    <div class="left-ads-display col-lg-8">
+        <div class="row">
+            <div class="desc1-left col-md-6">
+                <img src="{{ movie.poster.url }}" class="img-fluid" alt="">
+            </div>
+            <div class="desc1-right col-md-6 pl-lg-4">
+                <h3 class="editContent">
+                    {{ movie.title }}
+                </h3>
+                <!-- <h5 class="editContent"></h5> -->
+                <ul>
+                    <li class="none">
+                        <span><b>Year:</b>
+                            {{ movie.year }}
+                        </span>
+                    </li>
+                    <li class="none"><span><b>Country:</b>
+                            {{ movie.country }}
+                        </span>
+                    </li>
+                    <li class="none">
+                        <span><b>Director:</b>
+                            {% for director in movie.directors.all %}
+                                <a href="{% url 'actor' director.name%}">{{ director.name }}</a>                      
+                            {% endfor %}
+                        </span>
+                    </li>
+                    <li class="none"><span><b>Actors:</b>
+                        {% for actor in movie.actors.all %}
+                            <a href="{% url 'actor' actor.name%}">{{ actor.name }},</a>                      
+                        {% endfor %}
+                        </span>
+                    </span>
+                    </li>
+                    <li class="none"><span><b>Genres:</b>
+                        {% for genre in movie.genres.all %}
+                            {{ genre.name }}
+                        {% endfor %}
+                        </span>
+                    </li>
+                    <li class="none"><span><b>World premiere:</b>
+                         {{ movie.world_premiere }}
+                        </span>
+                    </li>
+                    <li class="none"><span><b>Budget:</b>
+                         ${{ movie.budget }}
+                        </span>
+                    </li>
+                    <li class="none"><span><b>World frees:</b>
+                         ${{ movie.fees_in_world }}
+                        </span>
+                    </li>
+                    <li class="none"><span><b>World raiting:</b>
+                            4.0
+                       </span>
+                   </li>
+                    <li class="none">
+
+                        <form action="{% url 'add_rating' %}" method="post" name="rating">
+                            <b> Your Raiting:</b>
+                           
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ movie.id }}" name="movie">
+                            <span class="rating">
+                                
+                                {% for k, v in star_form.fields.star.choices %}
+                                    <input id="rating{{ v }}" type="radio" name="star"
+                                           value="{{ k }}">
+                                    <label for="rating{{ v }}">{{ k }}</label>
+                                {% endfor %}
+                            </span>
+                            
+                        </form>
+                    </li>
+                    <!-- <div class="share-desc">
+                        <div class="share">
+                            <h4 class="editContent">
+                                Share:
+                            </h4>
+                            <ul class="w3layouts_social_list list-unstyled">
+                                <li>
+                                    <a href="#" class="w3pvt_facebook editContent">
+                                        <span class="fa fa-facebook-f"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="w3pvt_twitter editContent">
+                                        <span class="fa fa-twitter"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="w3pvt_dribble editContent">
+                                        <span class="fa fa-dribbble"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div> -->
+            </div>
+        </div>
+    
+        <p class="shop-sing editContent " style="
+        font-weight: 600;
+        font-family: 'Source Sans Pro', sans-serif;
+        padding: 10px;
+        text-transform: uppercase;
+        font-size: 1.2em;
+        letter-spacing: 2px;       
+        color: #080808;
+        margin: -0.5em 0 -1em 0;">
+           Where to watch for free
+        </p>
+        <p class="editContent">
+            
+            <a href="https://rezka.ag/search/?do=search&subaction=search&q={{movie.title}}">
+                <span class="links" style="
+                margin: 0 auto;
+                display: inline-block;
+                margin: 10px;
+                width: 80px;
+                height: 30px;
+                background-color: #80878c;
+                color:#1e272e;
+                border-radius: 2px;"> <span style="margin: 10px;">HDrezka</span> </span>
+            </a>
+            <a href=" https://fmovies.co/search?keyword={{movie.title}}">
+                <span class="links  " style="
+                margin: 0 auto;
+                display: inline-block;
+                margin: 10px;
+                width: 80px;
+                height: 30px;
+                background-color: rgb(11, 196, 144);
+                color:#ffffff;
+                border-radius: 2px;"> <span style="margin: 10px;">FMovies</span> </span>
+            </a>
+           
+            
+        </p>
+        <p class="shop-sing editContent " style="
+        font-weight: 600;
+        font-family: 'Source Sans Pro', sans-serif;
+        padding: 10px;
+        text-transform: uppercase;
+        font-size: 1.2em;
+        letter-spacing: 2px;       
+        color: #080808;
+        margin: -0.5em 0 -1em 0;">
+            Where to buy and watch
+         </p>
+         <p class="editContent">
+            
+            <a href="https://www.amazon.com/s?k={{movie.title}}">
+                <span class="links amazon" style="
+                margin: 0 auto;
+                display: inline-block;
+                margin: 10px;
+                width: 90px;
+                height: 30px;
+                background-color: #1e272e;
+                color:#ffffff;
+                border-radius: 2px;"> <span  class="fa fa-amazon" style="margin: 10px;" >Amazon</span> </span>
+            </a>
+            
+             
+         </p>
+     
+    <div class="row sub-para-w3layouts mt-3">
+        
+        <h3 class="shop-sing editContent">
+            About film {{ movie.title }}
+        </h3>
+       
+        <p class="editContent">
+            {{ movie.description|safe }}
+        </p>
+        
+    </div>
+    <hr>
+    <div class="row">
+        <div class="single-form-left">
+         
+            <div class="contact-single">
+                <h3 class="editContent">
+                    <span class="sub-tittle editContent">{{movie.rewiews_set.count}}</span>
+                    Leave review
+                </h3>
+
+                <form action="{% url 'add_review' movie.id%}" method="post" class="mt-4" id="formReview">
+                    {% csrf_token %}
+                    <input type="hidden" name="parent" id="contactparent" value="">
+                    <div class="form-group editContent">
+                        <label for="contactcomment" class="editContent">
+                            Your comment
+                            </label>
+                        <textarea class="form-control border" rows="5"  name="text"
+                                    id="contactcomment" required=""></textarea>
+                    </div>
+                    <div class="d-sm-flex">
+                        <div class="col-sm-6 form-group p-0 editContent">
+                            <label for="contactusername" class="editContent">
+                                Name
+                            </label>
+                            <input type="text" class="form-control border" name="name"
+                                    id="contactusername" required="">
+                        </div>
+                        <div class="col-sm-6 form-group ml-sm-3 editContent">
+                            <label for="contactemail" class="editContent" >
+                                Email
+                            </label>
+                            <input type="email" class="form-control border" name="email"
+                                    id="contactemail" required="">
+                        </div>
+                    </div>
+                    <button type="submit"
+                            class="mt-3 btn btn-success btn-block py-3">
+                            Send
+                    </button>
+                </form>
+            </div>
+            <!--  //contact form grid ends here -->
+        </div>
+    </div>
+    <div class="single-form-left">    
+        {% for review in movie.get_review %}
+            <div class="media py-5">
+                <img src="{% static 'images/users/_default.jpg' %}" class="mr-3 img-fluid user" alt="image">
+                <div class="media-body mt-4">
+                    <h5 class="mt-0 editContent">
+                        {{review.name}}
+
+                    </h5>
+                    <p class="mt-2 editContent">
+                        {{review.text}}
+                    </p>
+                    <a href="#formReview" onclick="addReview('{{review.name}}','{{review.id}}')">Answer</a>
+
+                    {% for child_rew in review.rewiews_set.all %}
+                        <div class="media mt-5 editContent">
+
+                            <a class="pr-3" href="#">
+                                <img src="{% static 'images/users/_default.jpg' %}" class="img-fluid user" alt="image">
+
+                            </a>
+                            <div class="media-body">
+                                <h5 class="mt-0 editContent">{{child_rew.name}}</h5>
+                                <p class="mt-2 editContent">{{child_rew.text}}</p>
+                            </div>
+                        </div>
+                    {%endfor%}
+                </div>
+            </div>
+        {%endfor%}
+        <script>
+            function addReview(name, id){
+                document.getElementById("contactparent").value = id
+                document.getElementById("contactcomment").innerText = `${name},`
+            }
+        </script>
+    </div>
+
+{% endblock movie%}

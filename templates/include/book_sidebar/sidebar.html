@@ -1,0 +1,30 @@
+
+{% load book_tags %}
+<div class="search-bar w3layouts-newsletter">
+    <h3 class="sear-head editContent" >Find Book</h3>
+    <form action="{% url 'book_search'%}" method="get" class="d-flex editContent" >
+        <input type="search" placeholder="Enter name..." name="q" class="form-control" required="">
+        <button type="submit" class="btn1 btn" ><span class="fa fa-search" aria-hidden="true" ></span></button>
+    </form>
+    
+</div>
+<form action="{% url 'book_filter'%}" method="get">
+   
+        
+        
+
+    <div class="left-side my-3">
+        <h3 class="sear-head editContent" >Genres <button type="submit" class="btn1 btn" >Filter</button></h3>
+        
+        <ul class="w3layouts-box-list">
+            {% for genre in view.get_genres %}
+                <li class="editContent">
+                    <input type="checkbox" class="checked" name="genre" value="{{genre.id}}">
+                    <span class="span editContent">{{ genre.name }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+</form>
+{% get_last_updates %}

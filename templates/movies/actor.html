@@ -1,0 +1,88 @@
+{% extends 'movies/base.html'%}
+{% load static %}
+{% block title%} {{actor.name}} — Culture Cloud  {% endblock title%}
+{% block header %} movie-banner {% endblock header %}
+{% block container %}
+    <div class="container py-md-3"></div>
+{% endblock container%}
+{% block sidebar%}
+    <div class="side-bar col-lg-3">
+{% endblock sidebar%}
+
+{% block movie %}
+    <div class="left-ads-display col-lg-8">
+        <div class="row">
+            <div class="desc1-left col-md-6">
+                <img src="{{ actor.image.url }}" class="img-fluid" alt="">
+            </div>
+            <div class="desc1-right col-md-6 pl-lg-4">
+                <h3 class="editContent">
+                    {{ actor.name }}
+                </h3>
+                <!-- <h5 class="editContent"></h5> -->
+                <ul>
+                    
+                    <li class="none">   
+                        <span><b>Born:</b>
+                            {{ actor.born }}
+                            ({{ actor.age }}years)
+                        </span>
+                    </li>
+                    <li class="none">   
+                        <span><b>Years active:</b>
+                            {{ actor.start_acting}}—
+                            {{ actor.end_acting }}
+                        </span>
+                    </li>
+                    <!-- <li class="none"><span><b>Country:</b>
+                            {{ movie.country }}
+                        </span>
+                    </li> -->
+                    <li class="none"><span><b>Director:</b>
+                       
+                            {% for movie in actor.film_director.all %}
+                                
+                                    <a href="{% url 'movie_detail' movie.url%}">{{ movie.title }}</a>                      
+                                </span>
+                            {% endfor %}
+                        </span>
+                    </li>
+                    <li class="none"><span><b>Was an actor in:</b>
+                            {% for movie in actor.film_actor.all %}          
+                                <a href="{% url 'movie_detail' movie.url%}">{{ movie.title }}</a>                              
+                            {% endfor %}
+                        </span>
+                    </li>
+
+                    <li class="none">   
+                        <span><b>Nationality:</b>
+                            {{ actor.nationality }}
+
+                        </span>
+                    </li>
+                    <li class="none">   
+                        <span><b>Genres:</b>
+                            {{ actor.genre }}
+                        </span>
+                    </li>
+                </ul>           
+            </div>
+        </div>
+        <div class="row sub-para-w3layouts mt-5">
+        
+            <h3 class="shop-sing editContent">
+                About  {{ actor.name }}
+            </h3>
+            <!-- <p>
+                <img src="bundles/images/about.jpg" class="img-fluid" alt="">
+                <img src="bundles/images/admin.jpg" class="img-fluid" alt="">
+                <img src="bundles/images/d1.jpg" class="img-fluid" alt="">
+            </p> -->
+            <p class="editContent">
+                {{ actor.description|safe }}
+            </p>
+        </div>
+    </div>
+
+
+{% endblock movie%}

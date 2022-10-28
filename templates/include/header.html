@@ -1,0 +1,46 @@
+<!-- Header -->
+{% load movie_tags %}
+
+
+
+<header class="header">
+    <div class="container-fluid px-lg-5">
+        <!-- nav -->
+        <nav class="py-4">
+            <div id="logo">
+                <h1> <a href="{% url 'main'%}" class="editContent">Culture Cloud</a></h1>
+            </div>
+
+            <label for="drop" class="toggle">Menu</label>
+            <input type="checkbox" id="drop">
+            <ul class="menu mt-2">
+                <li class="active"><a href="{% url 'main'%}">Main</a></li>
+                <li>
+                    <!-- First Tier Drop Down -->
+                    <label for="drop-2" class="toggle">Categories <span class="fa fa-angle-down" aria-hidden="true" ></span> </label>
+                    <a href="#">Categories <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                    <input type="checkbox" id="drop-2">
+                    <ul>
+                        <li><a href="{% url 'books'%}">Books</a></li>
+                        {% get_categories as categories%}
+                        {% for category in categories%}
+                            <li><a href="/films">{{category.name}}</a></li>
+                        {%endfor%}
+                        <!-- {% for category in categories%}
+                            <li><a href="/">{{category.name}}</a></li>
+                        {%endfor%} -->
+                    </ul>
+                </li>
+                <li><a href="{% url 'main'%}" style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">Log in</a></li>
+            </ul>
+        </nav>
+        <!-- //nav -->
+    </div>
+</header>
+<!-- //header -->
+<!--/banner-->
+
+    <!--// banner-inner -->
+
+<!--//main-content-->
+<!---->

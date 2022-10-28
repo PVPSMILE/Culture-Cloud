@@ -1,0 +1,109 @@
+{% extends 'books/base.html'%}
+{% load static %}
+{% block title%}{{book.name}} — Culture Cloud{% endblock title%}
+{% block fix_head %} film-banner {% endblock fix_head %}
+{% block header %} book-banner {% endblock header %}
+{% block container %}
+    <div class="container py-md-3"></div>
+{% endblock container%}
+{% block sidebar%}
+
+    <div class="side-bar col-lg-3">
+    
+{% endblock sidebar%}
+
+{% block book %}
+<div class="left-ads-display col-lg-8">
+    <div class="row">
+        <div class="desc1-left col-md-6">
+            <img src="{{ book.poster.url }}" class="img-fluid" alt="">
+        </div>
+        <div class="desc1-right col-md-6 pl-lg-4">
+            <h3 class="editContent">
+                {{ book.name }}
+            </h3>
+            <!-- <h5 class="editContent"></h5> -->
+            <ul>
+                <li class="none">
+                    <span><b>Year:</b>
+                        {{ book.year }}
+                    </span>
+                </li>
+                <li class="none"><span><b>Author:</b>
+                        {{ book.author }}
+                    </span>
+                </li>
+                
+               
+                <li class="none"><span><b>Genres:</b>
+                    {% for genre in book.genres.all %}
+                        {{ genre.name }}
+                    {% endfor %}
+                    </span>
+                </li>
+                
+              
+                <li class="none"><span><b>World raiting:</b>
+                        4.0
+                   </span>
+               </li>
+               <li class="none">
+                    <a href="#"><b>Rating:</b>
+                        <span class="fa fa-star" aria-hidden="true"
+                                ></span>
+                        <span class="fa fa-star" aria-hidden="true"
+                                ></span>
+                        <span class="fa fa-star" aria-hidden="true"
+                                ></span>
+                        <span class="fa fa-star" aria-hidden="true"
+                               ></span>
+                        <span class="fa fa-star" aria-hidden="true"
+                                ></span>
+                        <span class="editContent"
+                                >5.0</span>
+                    </a>
+                </li>
+               
+        </div>
+    </div>
+    <p class="shop-sing editContent " style="
+        font-weight: 600;
+        font-family: 'Source Sans Pro', sans-serif;
+        padding: 10px;
+        text-transform: uppercase;
+        font-size: 1.2em;
+        letter-spacing: 2px;       
+        color: #080808;
+        margin: -0.5em 0 -1em 0;">
+            Where to buy and read
+         </p>
+    <p class="editContent">
+            
+        <a href="https://www.goodreads.com/search?utf8=✓&q={{book.name}}">
+            <span class="links amazon" style="
+            margin: 0 auto;
+            display: inline-block;
+            margin: 10px;
+            width: 100px;
+            height: 30px;
+            background-color: #fbe28b;
+            color: #151515;
+            border-radius: 2px;"> <span   style="margin: 10px;" >Goodreads</span> </span>
+        </a>
+        
+         
+     </p>
+<div class="row sub-para-w3layouts mt-5">
+
+    <h3 class="shop-sing editContent">
+        About Book {{ book.name }}
+    </h3>
+   
+    <p class="editContent">
+        {{ book.description|safe }}
+    </p>
+    
+</div>
+<hr>
+
+{% endblock book%}

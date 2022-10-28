@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+{% block title%}Culture Cloud{% endblock title%}
+{% block content %}
+{% load static %}
+    <section class="ab-info-main py-md-5 py-4 editContent menu_block" style="padding-left: 3rem; padding-right: 3rem;">
+        <div class="right-ads-display col-lg-12">
+            <h1 class="topic">Topics</h1>
+            <div class="row">
+            
+                    <div class="col-md-6 product-men">
+                        <div class="product-shoe-info editContent text-center mt-lg-6 main_block " >
+                            <div class="men-thumb-item">
+                                <img src="static/images/topic/move.jpg" class="img-fluid" alt="" >
+                            </div>
+                            <div class="item-info-product ">
+                                <h3 class="sizing colorful ">
+                                    <a href="{% url 'films'%}" class="editContent " >
+                                        Films</a>
+                                </h3>
+                               
+                            
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 product-men">
+                        <div class="product-shoe-info editContent text-center mt-lg-6 main_block" >
+                            <div class="men-thumb-item">
+                                <img src="static/images/topic/book.jpg"
+                                class="img-fluid" alt="" >
+                            </div>
+                            <div class="item-info-product">
+                                <h3 class="sizing colorful">
+                                    <a href="{% url 'books'%}" class="editContent" >
+                                        Books</a>
+                                </h3>
+                               
+                            
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+                
+           
+        </div>
+
+        
+                
+            
+            
+        
+    </section>
+{%endblock content%}

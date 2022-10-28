@@ -1,0 +1,41 @@
+{% extends 'books/base.html' %}
+— Culture Cloud
+{% block header %} book-banner {% endblock header %}
+
+{% block book %}
+
+    <div class="left-ads-display col-lg-9">
+        <div class="row">
+
+            <!-- {% for book in book_list %} -->
+
+                <div class="col-md-3 product-men">
+                    <div class="product-shoe-info editContent text-center mt-lg-4 product-shoe-info_update"  >
+                        <div class="men-thumb-item">
+                            <img src="{{book.poster.url }}" class="img-fluid" alt="" >
+                        </div>
+                        <div class="item-info-product">
+                            <h4 class="">
+                                <a href="{% url 'book_detail' book.url%}" class="editContent" >
+                                    {{book.name}}</a>
+                            </h4>
+                        
+                           
+                            
+                            <ul class="stars">
+                                <li><a href="#"><span class="fa fa-star" aria-hidden="true" ></span></a></li>
+                                <li><a href="#"><span class="fa fa-star" aria-hidden="true" ></span></a></li>
+                                <li><a href="#"><span class="fa fa-star-half-o" aria-hidden="true" ></span></a></li>
+                                <li><a href="#"><span class="fa fa-star-half-o" aria-hidden="true" ></span></a></li>
+                                <li><a href="#"><span class="fa fa-star-o" aria-hidden="true" ></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <!-- {% endfor %} -->
+        </div>
+            
+       
+    </div>
+        
+{% endblock book%}
